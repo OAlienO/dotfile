@@ -9,9 +9,12 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'scrooloose/syntastic'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'jiangmiao/auto-pairs'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -28,8 +31,24 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-:syntax on
+set t_Co=256
 
-:set tabstop=4
-:set shiftwidth=4
-:set expandtab
+" encoding
+set encoding=utf-8
+set fileencodings=utf-8
+
+" syntax highlight
+syntax on
+
+" tab 四格
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+" 顯示行號
+set number
+
+let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
+
+let g:UltiSnipsExpandTrigger="<F4>"
+let g:UltiSnipsSnippetDirectories=['UltiSnips']
