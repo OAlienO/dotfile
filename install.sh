@@ -1,28 +1,76 @@
-# vim-plug
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+#!/bin/bash
+
+green="\e[32m"
+normal="\e[0m"
+
+success () {
+    printf "${green}$1${normal}\n"
+}
 
 # oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+if [ ! -d ~/.oh-my-zsh ]; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    success "oh-my-zsh installed"
+fi
 
 # powerlevel9k
-git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+if [ ! -d ~/.oh-my-zsh/custom/themes/powerlevel9k ]; then
+    git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+    success "powerlevel9k installed"
+fi
 
 # zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]; then
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    success "zsh-syntax-highlighting installed"
+fi
 
 # zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    success "zsh-autosuggestions installed"
+fi
 
 # zsh-completions
-git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
+if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions ]; then
+    git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
+    success "zsh-completions installed"
+fi
+
+# tpm
+if [ ! -d ~/.tmux/plugins/tpm ]; then
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    success "tpm installed"
+fi
+
+# spacevim
+if [ ! -d ~/.SpaceVim ]; then
+    sudo apt-get -qqy update
+    sudo apt-get -qqy install neovim wamerican
+    curl -sLf https://spacevim.org/install.sh | bash
+    success "spacevim installed"
+fi
 
 # copy all file
-cp file/.* ~/
+cp .zshrc .tmux.conf .tmux.conf.local ~
+cp init.toml ~/.SpaceVim.d
+success "copy custom config file to $HOME"
 
 # pyenv
-curl https://pyenv.run | bash
-pyenv install 3.7.0
-pyenv global 3.7.0
+if [ ! -d ~/.pyenv ]; then
+    curl https://pyenv.run | bash
+    success "pyenv installed"
+fi
+
+# python 3.7.0
+if [[ $(pyenv versions) != *"3.7.0"* ]]; then
+    sudo apt-get -qqy update
+    sudo apt-get -qqy install build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libffi-dev
+    pyenv install 3.7.0
+    pyenv global 3.7.0
+    success "python 3.7.0 installed"
+fi
 
 # fuck
 pip install thefuck
+

@@ -1,0 +1,14 @@
+[options]
+    colorscheme = "gruvbox"
+    colorscheme_bg = "dark"
+    vimcompatible = true
+    default_indent = 4
+    autocomplete_method = "deoplete"
+
+[[layers]]
+    name = 'autocomplete'
+
+[[layers]]
+    name = 'shell'
+    default_position = 'top'
+    default_height = 30
