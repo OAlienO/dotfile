@@ -13,7 +13,7 @@ info () {
 }
 
 sudo apt-get -qqy update
-sudo apt-get -qqy install curl
+sudo apt-get -qqy install curl zsh tmux
 
 # oh-my-zsh
 if [ ! -d ~/.oh-my-zsh ]; then
