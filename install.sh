@@ -53,6 +53,8 @@ fi
 
 # spacevim
 if [ ! -d ~/.SpaceVim ]; then
+    sudo apt-get -qqy install software-properties-common
+    sudo add-apt-repository -y ppa:neovim-ppa/stable
     sudo apt-get -qqy install neovim wamerican
     curl -sLf https://spacevim.org/install.sh | bash
     success "spacevim installed"
