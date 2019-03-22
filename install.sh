@@ -92,4 +92,12 @@ pip install thefuck
 # copy all file
 cp .zshrc .tmux.conf .tmux.conf.local ~
 success "copy custom config file to $HOME"
-info "copy spacevim config manually after running vim"
+
+# change default shell to zsh
+chsh -s $(which zsh)
+success "change default shell to zsh"
+
+info "what you should do manually:"
+info "1) copy spacevim config manually \e[1mafter running vim\e[0m: \e[35mcp init.toml ~/.SpaceVim.d/\e[0m"
+info "2) login again to use zsh"
+info "3) install node: \e[35mnvm install node\e[0m"
