@@ -1,11 +1,19 @@
 #!/bin/bash
 
-green="\e[32m"
+green="\e[36m"
+blue="\e[34m"
 normal="\e[0m"
 
 success () {
     printf "${green}$1${normal}\n"
 }
+
+info () {
+    printf "${blue}$1${normal}\n"
+}
+
+sudo apt-get -qqy update
+sudo apt-get -qqy install curl
 
 # oh-my-zsh
 if [ ! -d ~/.oh-my-zsh ]; then
@@ -45,16 +53,10 @@ fi
 
 # spacevim
 if [ ! -d ~/.SpaceVim ]; then
-    sudo apt-get -qqy update
     sudo apt-get -qqy install neovim wamerican
     curl -sLf https://spacevim.org/install.sh | bash
     success "spacevim installed"
 fi
-
-# copy all file
-cp .zshrc .tmux.conf .tmux.conf.local ~
-cp init.toml ~/.SpaceVim.d
-success "copy custom config file to $HOME"
 
 # pyenv
 if [ ! -d ~/.pyenv ]; then
@@ -64,7 +66,6 @@ fi
 
 # python 3.7.0
 if [[ $(pyenv versions) != *"3.7.0"* ]]; then
-    sudo apt-get -qqy update
     sudo apt-get -qqy install build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libffi-dev
     pyenv install 3.7.0
     pyenv global 3.7.0
@@ -74,3 +75,7 @@ fi
 # fuck
 pip install thefuck
 
+# copy all file
+cp .zshrc .tmux.conf .tmux.conf.local ~
+success "copy custom config file to $HOME"
+info "copy spacevim config after running vim"
