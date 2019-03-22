@@ -80,4 +80,4 @@ pip install thefuck
 # copy all file
 cp .zshrc .tmux.conf .tmux.conf.local ~
 success "copy custom config file to $HOME"
-info "copy spacevim config after running vim"
+info "copy spacevim config manually after running vim"
