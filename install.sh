@@ -66,6 +66,13 @@ if [ ! -d ~/.pyenv ]; then
     success "pyenv installed"
 fi
 
+# set pyenv path temporary
+if [[ $PATH != *"/root/.pyenv/bin"* ]]; then
+    export PATH="/root/.pyenv/bin:$PATH"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+
 # python 3.7.0
 if [[ $(pyenv versions) != *"3.7.0"* ]]; then
     sudo apt-get -qqy install build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libffi-dev
