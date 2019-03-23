@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 green="\e[36m"
 blue="\e[34m"
 normal="\e[0m"
@@ -41,13 +43,14 @@ fi
 
 # zsh-completions
 if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions ]; then
-    git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
+    git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions
     success "zsh-completions installed"
 fi
 
 # zsh-nvm
 if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-nvm ]; then
-    git clone https://github.com/lukechilds/zsh-nvm ${ZSH_CUSTOM:~/.oh-my-zsh/custom}/plugins/zsh-nvm
+    git clone https://github.com/lukechilds/zsh-nvm ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-nvm
+    success "zsh-nvm installed"
 fi
 
 # tpm
@@ -87,11 +90,16 @@ if [[ $(pyenv versions) != *"3.7.0"* ]]; then
 fi
 
 # fuck
-pip install thefuck
-success "fuck installed"
+if [[ $(pip freeze) != *"fuck"* ]]; then
+    pip install thefuck
+    success "fuck installed"
+fi
 
 # spacevim python layer
-pip install flake8 yapf autoflake isort
+declare -a packages=("flake8" "yapf" "autoflake" "isort")
+for package in "${packages[@]}"; do
+    pip install $package
+done
 success "spacevim python layer dependency installed"
 
 # copy all file
