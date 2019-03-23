@@ -4,6 +4,7 @@
     vimcompatible = true
     default_indent = 4
     autocomplete_method = "deoplete"
+    filetree_direction = "left"
 
 [[layers]]
     name = 'autocomplete'

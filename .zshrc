@@ -102,3 +102,6 @@ fi
 
 # fuck
 eval $(thefuck --alias)
+
+alias cp="cp -i"
+alias rm="trash"

@@ -88,14 +88,21 @@ fi
 
 # fuck
 pip install thefuck
+success "fuck installed"
+
+# spacevim python layer
+pip install flake8 yapf autoflake isort
+success "spacevim python layer dependency installed"
 
 # copy all file
 cp .zshrc .tmux.conf .tmux.conf.local ~
 success "copy custom config file to $HOME"
 
 # change default shell to zsh
-chsh -s $(which zsh)
-success "change default shell to zsh"
+if [[ $SHELL != *"zsh"* ]]; then
+    chsh -s $(which zsh)
+    success "change default shell to zsh"
+fi
 
 info "what you should do manually:"
 info "1) copy spacevim config manually \e[1mafter running vim\e[0m: \e[35mcp init.toml ~/.SpaceVim.d/\e[0m"
