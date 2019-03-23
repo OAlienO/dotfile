@@ -114,8 +114,10 @@ if [[ $SHELL != *"zsh"* ]]; then
     success "change default shell to zsh"
 fi
 
+info "--------------------------------------------------"
 info "what you should do manually:"
 info "1) copy spacevim config manually \e[1mafter running vim\e[0m: \e[35mcp init.toml ~/.SpaceVim.d/\e[0m"
 info "2) login again to use zsh"
 info "3) if you got 'command not found: print_icon', run the command: \e[35mlocale-gen --lang en_US.UTF-8\e[0m"
 info "4) install node: \e[35mnvm install node\e[0m"
+info "--------------------------------------------------"
