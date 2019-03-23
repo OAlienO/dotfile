@@ -98,7 +98,9 @@ fi
 # spacevim python layer
 declare -a packages=("flake8" "yapf" "autoflake" "isort")
 for package in "${packages[@]}"; do
-    pip install $package
+    if [[ $(pip freeze) != *"$package"* ]]; then
+        pip install $package
+    fi
 done
 success "spacevim python layer dependency installed"
 
