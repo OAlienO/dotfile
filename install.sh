@@ -20,43 +20,43 @@ sudo apt-get -qqy install curl zsh tmux
 # oh-my-zsh
 if [ ! -d ~/.oh-my-zsh ]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-    success "oh-my-zsh installed"
+    success "install oh-my-zsh"
 fi
 
 # powerlevel9k
 if [ ! -d ~/.oh-my-zsh/custom/themes/powerlevel9k ]; then
     git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
-    success "powerlevel9k installed"
+    success "install powerlevel9k"
 fi
 
 # zsh-syntax-highlighting
 if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]; then
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-    success "zsh-syntax-highlighting installed"
+    success "install zsh-syntax-highlighting"
 fi
 
 # zsh-autosuggestions
 if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-    success "zsh-autosuggestions installed"
+    success "install zsh-autosuggestions"
 fi
 
 # zsh-completions
 if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions ]; then
     git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions
-    success "zsh-completions installed"
+    success "install zsh-completions"
 fi
 
 # zsh-nvm
 if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-nvm ]; then
     git clone https://github.com/lukechilds/zsh-nvm ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-nvm
-    success "zsh-nvm installed"
+    success "install zsh-nvm"
 fi
 
 # tpm
 if [ ! -d ~/.tmux/plugins/tpm ]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-    success "tpm installed"
+    success "install tpm"
 fi
 
 # spacevim
@@ -65,13 +65,13 @@ if [ ! -d ~/.SpaceVim ]; then
     sudo add-apt-repository -y ppa:neovim-ppa/stable
     sudo apt-get -qqy install neovim wamerican
     curl -sLf https://spacevim.org/install.sh | bash
-    success "spacevim installed"
+    success "install spacevim"
 fi
 
 # pyenv
 if [ ! -d ~/.pyenv ]; then
     curl https://pyenv.run | bash
-    success "pyenv installed"
+    success "install pyenv"
 fi
 
 # set pyenv path temporary
@@ -86,13 +86,13 @@ if [[ $(pyenv versions) != *"3.7.0"* ]]; then
     sudo apt-get -qqy install build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libffi-dev
     pyenv install 3.7.0
     pyenv global 3.7.0
-    success "python 3.7.0 installed"
+    success "install python 3.7.0"
 fi
 
 # fuck
-if [[ $(pip freeze) != *"fuck"* ]]; then
+if [[ $(pip freeze) != *"thefuck"* ]]; then
     pip install thefuck
-    success "fuck installed"
+    success "install thefuck"
 fi
 
 # spacevim python layer
@@ -100,7 +100,7 @@ declare -a packages=("flake8" "yapf" "autoflake" "isort")
 for package in "${packages[@]}"; do
     if [[ $(pip freeze) != *"$package"* ]]; then
         pip install $package
-        success "spacevim python layer dependency $package installed"
+        success "install spacevim python layer dependency $package"
     fi
 done
 
