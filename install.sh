@@ -75,8 +75,9 @@ if [ ! -d ~/.pyenv ]; then
 fi
 
 # set pyenv path temporary
-if [[ $PATH != *"/root/.pyenv/bin"* ]]; then
-    export PATH="/root/.pyenv/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+if [[ $PATH != *"$PYENV_ROOT/bin"* ]]; then
+    export PATH="$PYENV_ROOT/bin:$PATH"
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 fi
