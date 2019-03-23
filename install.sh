@@ -100,9 +100,9 @@ declare -a packages=("flake8" "yapf" "autoflake" "isort")
 for package in "${packages[@]}"; do
     if [[ $(pip freeze) != *"$package"* ]]; then
         pip install $package
+        success "spacevim python layer dependency $package installed"
     fi
 done
-success "spacevim python layer dependency installed"
 
 # copy all file
 cp .zshrc .tmux.conf .tmux.conf.local ~
